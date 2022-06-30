@@ -25,7 +25,7 @@ For getting the dependencies from the root folder run:
 
 To start the service:
 
-`export LOG_LEVEL=DEBUG;export SERVICE=iban;export VERSION=1;JWT_SECRET=fdfdgdf go run cmd/iban/main.go`
+`export LOG_LEVEL=DEBUG;export SERVICE=iban;export VERSION=1; go run cmd/iban/main.go`
 
 ## How to run via Docker
 `docker run --rm -d  -p 8080:8080/tcp iban:latest`
