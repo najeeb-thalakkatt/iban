@@ -1,11 +1,6 @@
 FROM golang:1.17-alpine AS builder
 WORKDIR /app
 
-#build logging settings.
-ENV LOG_LEVEL DEBUG
-ENV SERVICE sum-build
-ENV VERSION v1
-
 #copying all source.
 COPY . /app
 #installing req libs.
@@ -18,11 +13,10 @@ RUN cd /app/ \
     && go test ./... -v \
     && cd /app/cmd/iban \
     && go build -o iban
+    
 #building final image.
 FROM alpine
 WORKDIR /app
-
-
 RUN apk update
 #copying only binary from builder.
 COPY --from=builder /app/cmd/iban /app
