@@ -4,12 +4,9 @@ package main
 
 import (
 	"iban/internal/pkg/controller"
+	"log"
 	"net/http"
-
-	"github.com/teltech/logger"
 )
-
-var log = logger.New()
 
 func main() {
 	http.HandleFunc("/api/iban/validate", controller.IBANValidatorHandler)

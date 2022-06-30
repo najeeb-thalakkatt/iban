@@ -4,12 +4,9 @@ package controller
 import (
 	"encoding/json"
 	"iban/internal/pkg/service"
+	"log"
 	"net/http"
-
-	"github.com/teltech/logger"
 )
-
-var log = logger.New()
 
 //Error error struct for error handling...
 type Error struct {
@@ -32,16 +29,16 @@ func handleErrorResponse(w http.ResponseWriter, status int, message string) {
 	response.Error = message
 	resp, err := json.Marshal(response)
 	if err != nil {
-		log.Errorf("error in parsing response, err: %v", err)
+		log.Fatalf("error in parsing response, err: %v", err)
 	}
-	w.WriteHeader(http.StatusInternalServerError)
+	w.WriteHeader(status)
 	w.Write(resp)
 }
 func handleSuccessResponse(w http.ResponseWriter, response interface{}) {
 	w.Header().Set("Content-Type", "application/json")
 	resp, err := json.Marshal(response)
 	if err != nil {
-		log.Errorf("error in parsing response, err: %v", err)
+		log.Fatalf("error in parsing response, err: %v", err)
 	}
 	w.WriteHeader(http.StatusOK)
 	w.Write(resp)
@@ -56,6 +53,10 @@ func IBANValidatorHandler(w http.ResponseWriter, r *http.Request) {
 		handleErrorResponse(w, http.StatusBadRequest, err.Error())
 	}
 	var res Response
+	if len(req.IBAN) < 5 {
+		handleErrorResponse(w, http.StatusBadRequest, "IBAN should be of length between 5 and 34")
+		return
+	}
 	isValid, err := service.CheckIBAN(req.IBAN)
 	if err != nil {
 		handleErrorResponse(w, http.StatusInternalServerError, err.Error())
