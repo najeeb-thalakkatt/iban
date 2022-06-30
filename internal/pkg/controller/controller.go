@@ -51,7 +51,7 @@ func handleSuccessResponse(w http.ResponseWriter, response interface{}) {
 func IBANValidatorHandler(w http.ResponseWriter, r *http.Request) {
 	decoder := json.NewDecoder(r.Body)
 	var req Request
-	err := decoder.Decode(&req) // getting the json to an interface
+	err := decoder.Decode(&req)
 	if err != nil {
 		handleErrorResponse(w, http.StatusBadRequest, err.Error())
 	}
