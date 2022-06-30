@@ -21,28 +21,44 @@ Example (fictitious United Kingdom bank, sort code 12-34-56, account number 9876
 
 For getting the dependencies from the root folder run:
 
-`go mod vendor`
+```sh
+$ go mod vendor
+```
 
 To start the service:
 
-`go run cmd/iban/main.go`
+```sh
+$ go run cmd/iban/main.go
+```
 
 ## How to run via Docker
-`docker run --rm -d  -p 8080:8080/tcp iban:latest`
+```sh
+$ docker run --rm -d  -p 8080:8080/tcp iban:latest
+```
 ## How to run test
 
-`go test ./... -v     `
+```sh
+$ go test ./... -v
+```
 
 ## /iban/validate api 
 ### url: localhost:8080/iban/validate  POST
 payload:
 
-`{"IBAN":"BE71 0961 2345 6769"}`
+```js
+{"IBAN":"BE71 0961 2345 6769"}
+```
 
 response:
 
-`{"result":"valid"}`
+```js
+{"result":"valid"}
+```
 
-`{"Error":"invalid iban"}`
+```js
+{"Error":"invalid iban"}
+```
 
-`{"Error":"IBAN length for DE is 22"}`
+```js
+{"Error":"IBAN length for DE is 22"}
+```
