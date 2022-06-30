@@ -22,13 +22,6 @@ RUN cd /app/ \
 FROM alpine
 WORKDIR /app
 
-#defaults, can be overriden at startup time.
-#set to debug as requested but prob should not be.
-ENV LOG_LEVEL DEBUG
-ENV SERVICE sum-build
-ENV VERSION v1
-# move it to secrets
-ENV JWT_SECRET secret 
 
 RUN apk update
 #copying only binary from builder.

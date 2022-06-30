@@ -1,5 +1,4 @@
 // This is a golang rest application to cheak if a IBAN number is valid
-// JWT token is needed for the same
 package main
 
 import (
