@@ -56,9 +56,17 @@ response:
 ```
 
 ```js
-{"Error":"invalid iban"}
+{
+    "error": {
+        "reason": "IBAN not valid"
+    }
+}
 ```
 
 ```js
-{"Error":"IBAN length for DE is 22"}
+{
+    "error": {
+        "reason": "IBAN length for DE is 22"
+    }
+}
 ```
