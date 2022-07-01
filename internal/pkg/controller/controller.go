@@ -21,7 +21,7 @@ type Request struct {
 
 //Response...
 type Response struct {
-	Valid bool   `json:"valid,omitempty"`
+	Valid bool   `json:"valid"`
 	Error *Error `json:"error,omitempty"`
 }
 
