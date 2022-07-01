@@ -39,7 +39,6 @@ func CheckIBAN(iban string) (bool, error) {
 	intIBAN := Replace(swappedIBAN) //Replace each letter in the string with two digits, thereby expanding the string, where A = 10, B = 11, ..., Z = 35
 	mod := Mod97(intIBAN)           //Interpret the string as a decimal integer and compute the remainder of that number on division by 97
 	if mod != 1 {                   //If the remainder is 1, the check digit test is passed and the IBAN might be valid.
-
 		return false, fmt.Errorf("IBAN not valid")
 	}
 	return true, nil

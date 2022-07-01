@@ -47,7 +47,7 @@ func TestIBANValidatorHandlerInValid(t *testing.T) {
 	w := httptest.NewRecorder()
 	handler(w, req)
 	got := w.Code
-	want := 500
+	want := 400
 	if got != want {
 		t.Errorf("got %d, wanted %d", got, want)
 	}

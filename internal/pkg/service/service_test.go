@@ -77,9 +77,12 @@ func TestMod97(t *testing.T) {
 
 func TestCheckIBAN(t *testing.T) {
 	iban := "GB82 WEST 1234 5698 7654 32"
-	b, _ := CheckIBAN(iban)
+	b, err := CheckIBAN(iban)
 	got := b
 	want := true
+	if err != nil {
+		t.Errorf("test failed due to %s", err)
+	}
 	if got != want {
 		t.Errorf("got %t, wanted %t", got, want)
 	}
