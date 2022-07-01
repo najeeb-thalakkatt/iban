@@ -52,7 +52,9 @@ payload:
 response:
 
 ```js
-{"result":"valid"}
+{
+    "valid": true
+}
 ```
 
 ```js
